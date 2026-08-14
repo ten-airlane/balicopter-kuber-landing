@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<script>document.documentElement.className='js';</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kuber Bali Adventure — Helicopter Tours &amp; Transfers</title>
+<meta name="description" content="Private helicopter tours and seamless transfers from the Kuber helipad — the rice terraces, the volcanoes and the wild isles, plus direct transfers across Bali and the Gili Islands." />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="preload" as="image" href="images/hero-ubud.jpg" fetchpriority="high" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  /* Palette read directly from the Kuber Heli Tour Catalog PDF (28 July 2026):
+     #155A37 green, #F1D127 yellow, #CFFFC6 / #AAE4FF map fills, #F5F5F5 table zebra. */
+  --green:#155A37;
+  --green-deep:#0E3F26;
+  --plate:#072018;
+  --yellow:#F1D127;
+  --ink:#15211B;
+  --slate:#46574D;
+  --slate-2:#64756A;
+  --bg:#F6F8F4;
+  --bg-soft:#FBFCFA;
+  --raised:#FFFFFF;
+  --zebra:#F5F5F5;
+  --line:rgba(21,90,55,.14);
+  --line-soft:rgba(21,90,55,.08);
+  --shadow-sm:0 4px 18px rgba(14,63,38,.08);
+  --shadow-md:0 18px 45px rgba(14,63,38,.13);
+  --shadow-lg:0 30px 70px rgba(7,32,24,.26);
+  --r:14px;
+  --maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Geist',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--ink);background:var(--bg);line-height:1.7;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Geist',system-ui,sans-serif;color:var(--green);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+
+.container{width:min(var(--maxw),90vw);margin-inline:auto}
+.section{padding:clamp(66px,8.5vw,120px) 0}
+.section--soft{background:var(--bg-soft)}
+.eyebrow{display:inline-block;text-transform:uppercase;letter-spacing:.26em;font-size:.7rem;font-weight:700;color:var(--green);margin-bottom:18px}
+.eyebrow::before{content:"";display:inline-block;width:26px;height:3px;background:var(--yellow);vertical-align:middle;margin-right:12px;margin-bottom:3px}
+h2.title{font-size:clamp(1.8rem,3.4vw,2.8rem);margin-bottom:20px;text-transform:uppercase}
+.lead{font-size:clamp(1rem,1.3vw,1.12rem);color:var(--slate);max-width:64ch}
+.center{text-align:center}
+.center .lead{margin-inline:auto}
+.center .eyebrow::before{display:none}
+
+/* ---------- WORDMARK ---------- */
+.wm{display:flex;align-items:center}
+.wm img{height:48px;width:auto;flex:none}
+
+/* ---------- NAV ---------- */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .35s ease,box-shadow .35s ease,padding .35s ease;padding:18px 0}
+header.nav.scrolled{background:rgba(246,248,244,.95);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding:11px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px}
+nav.links{display:flex;gap:28px;align-items:center}
+nav.links a{font-size:.86rem;font-weight:500;color:rgba(255,255,255,.94);position:relative;transition:color .25s ease}
+nav.links a::after{content:"";position:absolute;left:0;bottom:-6px;height:2.5px;width:0;background:var(--yellow);transition:width .28s ease}
+nav.links a:hover::after,nav.links a.active::after{width:100%}
+header.nav.scrolled nav.links a{color:var(--slate)}
+header.nav.scrolled nav.links a:hover,header.nav.scrolled nav.links a.active{color:var(--green)}
+.nav-cta{border:2px solid var(--yellow);color:#fff;padding:8px 20px;border-radius:8px;font-size:.82rem;font-weight:600;transition:all .25s ease;white-space:nowrap}
+.nav-cta:hover{background:var(--yellow);color:var(--green)}
+header.nav.scrolled .nav-cta{color:var(--green)}
+header.nav.scrolled .nav-cta:hover{background:var(--yellow);color:var(--green)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.burger span{width:26px;height:2px;background:#fff;transition:.3s}
+header.nav.scrolled .burger span{background:var(--green)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-2;background-color:var(--plate);overflow:hidden}
+/* The still is the base layer and is never removed, so there is no black flash and no
+   layout gap while the video loads. The video fades in over it once it can actually play. */
+.hero-bg .hero-still{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+.hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;
+  opacity:0;transition:opacity .9s ease}
+.hero-bg video.ready{opacity:1}
+@media (prefers-reduced-motion:reduce){ .hero-bg video{display:none} }
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(102deg,rgba(7,32,24,.84) 0%,rgba(7,32,24,.50) 48%,rgba(7,32,24,.20) 100%)}
+.hero-inner{padding-top:90px}
+.hero h1{color:#fff;font-size:clamp(2.6rem,6.4vw,5.2rem);font-weight:800;line-height:1;margin-bottom:26px;letter-spacing:-.035em;text-transform:uppercase}
+.hero .sub{font-weight:300;font-size:clamp(1rem,1.7vw,1.28rem);color:rgba(255,255,255,.92);max-width:50ch;line-height:1.62;margin-bottom:34px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:8px;font-weight:600;font-size:.94rem;transition:all .28s ease;cursor:pointer;border:none;font-family:inherit}
+.btn-primary{background:var(--yellow);color:var(--green)}
+.btn-primary:hover{background:#fff;transform:translateY(-2px)}
+.btn-ghost{border:2px solid rgba(255,255,255,.55);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.14);border-color:#fff}
+.scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.mouse{width:22px;height:34px;border:1.5px solid rgba(255,255,255,.45);border-radius:12px;position:relative}
+.mouse::after{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:2px;height:6px;border-radius:2px;background:rgba(255,255,255,.78);animation:sc 1.7s infinite}
+@keyframes sc{0%{opacity:0;transform:translate(-50%,0)}45%{opacity:1}100%{opacity:0;transform:translate(-50%,11px)}}
+
+/* ---------- FEATURE PILLS ---------- */
+.stats{background:var(--green);padding:26px 0}
+.feature-pills{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:12px 30px}
+.feature-pills li{display:flex;align-items:center;gap:11px;color:rgba(255,255,255,.94);font-size:.84rem;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.feature-pills .dot{width:7px;height:7px;border-radius:50%;background:var(--yellow);flex:none}
+
+/* ---------- TOUR CARDS ---------- */
+.tour-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:50px}
+.tour-card{background:var(--raised);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease}
+.tour-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.tour-photo{height:250px;overflow:hidden;position:relative;cursor:zoom-in;background:var(--green-deep)}
+.tour-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.tour-card:hover .tour-photo img{transform:scale(1.045)}
+.expand{position:absolute;right:12px;bottom:12px;display:inline-flex;align-items:center;gap:7px;
+  border:none;cursor:pointer;font-family:inherit;font-size:.68rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--green);background:rgba(255,255,255,.94);padding:8px 13px;
+  border-radius:7px;box-shadow:var(--shadow-sm);transition:background .22s ease,transform .22s ease}
+.expand svg{width:13px;height:13px}
+.tour-card:hover .expand,.tour-photo:focus-within .expand{background:var(--yellow);transform:translateY(-2px)}
+.expand:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.tour-body{padding:24px;display:flex;flex-direction:column;flex:1}
+.tour-tag{display:inline-block;align-self:flex-start;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);background:var(--yellow);padding:5px 11px;border-radius:6px;margin-bottom:14px;font-weight:700}
+.tour-body h3{font-size:1.36rem;margin-bottom:6px;text-transform:uppercase}
+.tour-dur{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-2);font-weight:600;margin-bottom:14px}
+.tour-desc{font-size:.92rem;color:var(--slate);margin-bottom:18px}
+.route{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.route li{font-size:.74rem;color:var(--green);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-weight:500}
+.tour-map{border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-top:auto;margin-bottom:20px;cursor:zoom-in;background:#AAE4FF}
+.tour-map img{width:100%;height:auto}
+.price{padding-top:16px;border-top:2px solid var(--yellow);margin-bottom:18px}
+.price .label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--slate-2);font-weight:700;display:block;margin-bottom:4px}
+.price strong{font-size:1.34rem;font-weight:700;color:var(--green);letter-spacing:-.02em;display:block}
+.price .per{font-size:.78rem;color:var(--slate-2);display:block;margin-top:3px}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;border-radius:8px;background:var(--green);color:#fff;font-size:.86rem;font-weight:600;transition:background .25s ease}
+.cta:hover{background:var(--green-deep)}
+.note{margin-top:26px;font-size:.82rem;color:var(--slate-2);text-align:center;max-width:76ch;margin-inline:auto}
+
+/* ---------- FEATURED TRANSFERS ---------- */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+.feat{background:var(--raised);border:1px solid var(--line);border-top:4px solid var(--yellow);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease}
+.feat:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.feat-photo{height:224px;overflow:hidden;background:var(--green-deep)}
+.feat-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.feat:hover .feat-photo img{transform:scale(1.045)}
+.feat-body{padding:28px;display:flex;flex-direction:column;flex:1}
+.feat .tour-tag{margin-bottom:16px}
+.feat h3{font-size:1.42rem;margin-bottom:8px;text-transform:uppercase}
+.feat-body p{font-size:.92rem;color:var(--slate);margin-bottom:20px}
+.feat .price{margin-top:auto}
+
+/* ---------- TRANSFER TABLE ---------- */
+.table-head{margin-top:56px;margin-bottom:0;font-size:1.14rem;text-transform:none;font-weight:600}
+.table-wrap{margin-top:20px;overflow-x:auto;border-radius:var(--r);box-shadow:var(--shadow-sm);background:var(--raised);border:1px solid var(--line)}
+table.rates{width:100%;border-collapse:collapse;min-width:600px}
+table.rates thead th{background:var(--yellow);color:var(--green);text-transform:uppercase;font-size:.72rem;letter-spacing:.1em;font-weight:800;padding:18px 22px;text-align:left;line-height:1.35}
+table.rates thead th:nth-child(2){text-align:center}
+table.rates thead th:nth-child(3){text-align:right}
+table.rates td{padding:17px 22px;font-size:.95rem;border-top:1px solid var(--line-soft)}
+table.rates tbody tr:nth-child(even){background:var(--zebra)}
+table.rates td:first-child{font-weight:600;color:var(--ink)}
+table.rates td:first-child small{display:block;font-weight:400;font-size:.8rem;color:var(--slate-2)}
+table.rates td:nth-child(2){text-align:center;color:var(--slate);white-space:nowrap}
+table.rates td:nth-child(3){text-align:right;font-weight:700;color:var(--green);white-space:nowrap}
+
+/* ---------- SPLIT ---------- */
+.split{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(30px,5vw,66px);align-items:center}
+.split-photo{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-md)}
+.split-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.split-copy p{color:var(--slate);margin-bottom:15px}
+.split-copy p:last-of-type{margin-bottom:0}
+.attrib{border-left:3px solid var(--yellow);padding:2px 0 2px 18px;margin:22px 0;color:var(--slate);font-size:.92rem}
+.split .cta{align-self:flex-start;margin-top:24px}
+
+/* ---------- FLEET ---------- */
+.fleet-block{margin-top:58px}
+.fleet-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:clamp(28px,4vw,54px);align-items:center}
+.fleet-block.rev .fleet-grid{grid-template-columns:1.12fr .88fr}
+.fleet-block.rev .fleet-info{order:2}
+.fleet-block.rev .fleet-gallery{order:1}
+.fleet-info h3{font-size:clamp(1.6rem,2.6vw,2.1rem);margin-bottom:6px;text-transform:uppercase}
+.fleet-info .reg{font-size:.78rem;letter-spacing:.08em;color:var(--slate-2);font-weight:600;margin-bottom:24px}
+.spec{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--line)}
+.spec .k{display:flex;align-items:center;gap:10px;font-size:.84rem;color:var(--slate-2);font-weight:500}
+.spec .k svg{color:var(--green);flex:none}
+.spec .v{font-size:.92rem;font-weight:600;color:var(--ink);text-align:right}
+.spec-note{font-size:.74rem;color:var(--slate-2);margin-top:14px}
+.fleet-gallery img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;border-radius:10px;box-shadow:var(--shadow-sm);cursor:zoom-in;transition:transform .3s ease}
+.fleet-gallery img:hover{transform:scale(1.02)}
+
+/* ---------- CONTACT ---------- */
+/* The Ubud rice-field frame sits behind this section. It is already fetched for the hero
+   poster, so it costs nothing extra. The green wash is heavy enough to keep every piece of
+   text above AA — measured, not assumed. */
+.contact{position:relative;background:var(--green-deep);color:#fff;padding:clamp(62px,8vw,106px) 0;overflow:hidden}
+.contact::before{content:"";position:absolute;inset:0;
+  background:url('images/hero-ubud.jpg') center 45%/cover no-repeat}
+/* No green tint — a NEUTRAL scrim, and only under the text. The right side of the frame is
+   left essentially untouched so the rice fields read in their own colours. This is the
+   minimum that works: the photo is a bright dawn scene, and its darkest possible crop still
+   only gives white text 1.55:1 (measured), so some scrim is unavoidable. */
+.contact::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(95deg,rgba(8,24,16,.86) 0%,rgba(8,24,16,.82) 44%,rgba(8,24,16,.20) 82%,rgba(8,24,16,.04) 100%)}
+.contact > .container{position:relative;z-index:2}
+.contact-grid{display:block}
+.contact .wm{margin-bottom:26px}
+.contact .wm img{height:56px}
+.contact h2{color:#fff;font-size:clamp(1.8rem,3.2vw,2.6rem);margin-bottom:16px;text-transform:uppercase}
+.contact .sub{color:rgba(255,255,255,.94);margin-bottom:32px;max-width:46ch}
+.c-block h4{color:var(--yellow);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px;font-weight:700}
+.c-rows{display:flex;flex-direction:column;gap:12px}
+.c-item{display:flex;align-items:center;gap:13px;color:rgba(255,255,255,.92);font-size:.96rem;transition:color .25s ease}
+.c-item:hover{color:#fff}
+.c-item .ic{width:36px;height:36px;border-radius:8px;background:rgba(241,209,39,.16);display:grid;place-items:center;flex:none;color:var(--yellow)}
+
+/* ---------- WHATSAPP FLOAT ---------- */
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:90;display:flex;align-items:center;gap:10px}
+.wa-label{background:var(--raised);color:var(--green);font-size:.82rem;font-weight:600;padding:9px 15px;border-radius:8px;box-shadow:var(--shadow-md);white-space:nowrap}
+.wa-icon{width:54px;height:54px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:var(--shadow-md);transition:transform .25s ease}
+.wa-icon svg{width:28px;height:28px}
+.wa-float:hover .wa-icon{transform:scale(1.07)}
+
+/* ---------- TOUR DETAIL OVERLAY ---------- */
+.tm{position:fixed;inset:0;z-index:180;display:none;overflow-y:auto;
+  padding:clamp(14px,3.5vh,40px) clamp(14px,4vw,40px);
+  background:rgba(7,32,24,.88);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.tm.open{display:block}
+.tm-dialog{background:var(--raised);border-radius:var(--r);width:min(1060px,100%);margin:0 auto;
+  box-shadow:var(--shadow-lg);overflow:hidden;position:relative}
+.tm-close{position:absolute;top:14px;right:14px;z-index:3;width:42px;height:42px;border-radius:50%;
+  border:none;background:rgba(255,255,255,.94);color:var(--green);font-size:1.6rem;line-height:1;
+  cursor:pointer;display:grid;place-items:center;box-shadow:var(--shadow-sm);font-family:inherit;
+  transition:background .22s ease}
+.tm-close:hover{background:var(--yellow)}
+.tm-hero{position:relative;height:clamp(190px,30vh,320px);overflow:hidden;background:var(--green-deep)}
+.tm-hero img{width:100%;height:100%;object-fit:cover}
+.tm-hero::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(7,32,24,.30) 0%,rgba(7,32,24,0) 34%,rgba(7,32,24,.86) 100%)}
+.tm-heroText{position:absolute;left:clamp(20px,3vw,36px);right:clamp(20px,3vw,36px);bottom:clamp(18px,2.4vw,28px);z-index:2}
+.tm-heroText .tour-tag{margin-bottom:12px}
+.tm-heroText h3{color:#fff;font-size:clamp(1.5rem,3.2vw,2.3rem);text-transform:uppercase;margin-bottom:6px}
+.tm-heroText .tour-dur{color:var(--yellow);margin-bottom:0}
+.tm-body{padding:clamp(22px,3vw,36px);display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(22px,3vw,40px);align-items:start}
+.tm-body h4{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:14px}
+.tm-desc{color:var(--slate);font-size:1rem;margin-bottom:26px}
+.tm-body .route{margin-bottom:0}
+.tm-body .route li{font-size:.8rem;padding:6px 11px}
+.tm-map{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#AAE4FF;cursor:zoom-in;margin-bottom:24px}
+.tm-map img{width:100%;height:auto}
+.tm-body .price{margin-bottom:20px}
+.tm-body .cta{width:100%}
+.tm-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:18px clamp(22px,3vw,36px);border-top:1px solid var(--line);background:var(--bg-soft)}
+.tm-count{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--slate-2);font-weight:700}
+.tm-arrows{display:flex;gap:10px}
+.tm-arrow{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--raised);
+  color:var(--green);border-radius:8px;padding:10px 15px;font-family:inherit;font-size:.82rem;font-weight:600;
+  cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.tm-arrow:hover{background:var(--yellow);border-color:var(--yellow)}
+.tm-arrow svg{width:14px;height:14px}
+.tm-arrow:focus-visible,.tm-close:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+@media (max-width:860px){
+  .tm-body{grid-template-columns:1fr;gap:24px}
+  .tm{padding:0}
+  .tm-dialog{border-radius:0;min-height:100%}
+}
+
+/* ---------- LIGHTBOX ---------- */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(7,32,24,.96);display:none;overflow:auto;padding:40px 18px}
+.lb.open{display:block}
+.lb img{max-width:min(1100px,94vw);margin:0 auto;border-radius:8px;box-shadow:var(--shadow-lg);background:#fff}
+.lb .close{position:fixed;top:18px;right:24px;font-size:2.4rem;color:#fff;cursor:pointer;line-height:1;z-index:2}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:1;transform:none}
+html.js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+html.js .reveal.in{opacity:1;transform:none}
+html.js .reveal.d1{transition-delay:.1s}
+html.js .reveal.d2{transition-delay:.2s}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:900px){ .tour-grid{grid-template-columns:1fr} }
+@media (max-width:980px){
+  .split,.fleet-grid,.fleet-block.rev .fleet-grid{grid-template-columns:1fr}
+  .fleet-block.rev .fleet-info{order:1}
+  .fleet-block.rev .fleet-gallery{order:2}
+  .split-photo{order:-1}
+  /* stacked: the text spans the full width, so the scrim has to run top-to-bottom instead */
+  .contact::after{background:linear-gradient(180deg,rgba(8,24,16,.86) 0%,rgba(8,24,16,.83) 72%,rgba(8,24,16,.42) 100%)}
+}
+@media (max-width:760px){
+  nav.links{position:absolute;top:100%;left:0;right:0;background:var(--raised);flex-direction:column;gap:0;padding:8px 0;box-shadow:var(--shadow-md);display:none}
+  nav.links.mobile-open{display:flex}
+  nav.links a{color:var(--slate)!important;padding:13px 26px;width:100%}
+  nav.links a::after{display:none}
+  .burger{display:flex}
+  .nav-cta{display:none}
+  .tour-grid,.feat-grid{grid-template-columns:1fr}
+  .scroll-hint{display:none}   /* the WhatsApp button sits here on small screens */
+  .feature-pills{gap:10px 20px}
+  .feature-pills li{font-size:.76rem}
+  .hero .sub{max-width:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="wm" aria-label="Kuber Bali Adventure — helicopter tours and transfers">
+      <img src="images/kuber-logo.png" alt="Kuber Bali Adventure" />
+    </a>
+    <nav class="links" id="navlinks">
+      <a href="#tours">Tours</a>
+      <a href="#transfers">Transfers</a>
+      <a href="#ride">Ride &amp; Fly</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="https://wa.me/6281130075555?text=Hi%21%20I%27m%20guests%20at%20Kuber%20Adventure%20and%20I%27d%20like%20to%20book%20a%20helicopter%20flight.%20Could%20you%20let%20me%20know%20what%27s%20available%3F%20please%20keep%20this%20line%20so%20the%20Kuber%20guest%20rate%20is%20applied" target="_blank" rel="noopener" class="nav-cta">Book a Flight</a>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img class="hero-still" src="images/hero-ubud.jpg" alt="The Ubud valley at dawn — rice fields and palm forest with Mount Agung and Mount Batur on the horizon" />
+    <video id="heroVideo" autoplay muted playsinline preload="auto" poster="images/hero-ubud.jpg" aria-hidden="true" tabindex="-1">
+      <source src="images/hero.webm" type="video/webm" />
+      <source src="images/hero.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="container hero-inner">
+    <h1 class="reveal in">The Sky is<br/>Our Canvas</h1>
+    <p class="sub reveal in d1">Private helicopter tours and seamless transfers from Kuber Bali Adventure &mdash; Bali from above, tailored to your day.</p>
+    <div class="hero-actions reveal in d2">
+      <a href="#tours" class="btn btn-primary">Explore Tours
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#fleet" class="btn btn-ghost">Meet the Fleet</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="mouse"></div>Scroll</div>
+</section>
+
+<!-- ===== FEATURE PILLS ===== -->
+<section class="stats">
+  <div class="container">
+    <ul class="feature-pills reveal">
+      <li><span class="dot"></span>Brand-new helicopter fleet</li>
+      <li><span class="dot"></span>International safety standards</li>
+      <li><span class="dot"></span>World-class professional pilots</li>
+      <li><span class="dot"></span>Landing options at any location</li>
+      <li><span class="dot"></span>Best price guarantee</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== TOURS ===== -->
+<section class="section" id="tours">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow">Helicopter Tours &middot; From Kuber</span>
+      <h2 class="title">Choose Your Route</h2>
+      <p class="lead">Four signature routes, each a private charter for up to four guests &mdash; from a 20-minute glide over the rice terraces to a 55-minute crossing to the wild isles of Nusa Penida.</p>
+    </div>
+
+    <div class="tour-grid">
+      <!-- Tour 1 -->
+      <article class="tour-card reveal" data-tour="emerald-highlands">
+        <div class="tour-photo">
+          <img src="images/tour-ricefield.jpg" alt="Rice terraces and palm forest in the highlands above Ubud, seen from the air" loading="lazy" decoding="async" />
+          <button class="expand" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-8 8M3 21l8-8"/></svg>Enlarge
+          </button>
+        </div>
+        <div class="tour-body">
+          <span class="tour-tag">Ubud Rice Field Tour</span>
+          <h3>The Emerald Highlands</h3>
+          <div class="tour-dur">20 minutes</div>
+          <p class="tour-desc">Rise above the green centre of Bali. Below you the sculpted amphitheatre of Tegalalang, its terraces stacked like ribbons of jade down the valley walls, then Ubud &mdash; temples and dense forest gathered along winding river gorges. The flight crests at Jatiluwih, where UNESCO-protected paddies roll toward the mountains.</p>
+          <ul class="route">
+            <li>Kuber</li><li>Tegalalang Rice Terrace</li><li>Ubud</li><li>Jatiluwih Rice Terrace</li><li>Kuber</li>
+          </ul>
+          <div class="tour-map"><img src="images/map-ricefield.png" alt="Route map: Kuber to Tegalalang, Ubud and Jatiluwih, returning to Kuber" loading="lazy" decoding="async" /></div>
+          <div class="price">
+            <span class="label">Special price</span>
+            <strong>IDR 34,699,000</strong>
+            <span class="per">per tour &middot; private, per helicopter, up to 4 seats</span>
+          </div>
+          <a class="cta" href="https://wa.me/6281130075555?text=Hi%21%20I%27m%20guests%20at%20Kuber%20Adventure%20and%20I%27d%20like%20to%20book%20the%2020-minute%20Emerald%20Highlands%20tour%20%28IDR%2034%2C699%2C000%29.%20Could%20you%20let%20me%20know%20what%27s%20available%3F%20please%20keep%20this%20line%20so%20the%20Kuber%20guest%20rate%20is%20applied" target="_blank" rel="noopener">Enquire about this tour<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- Tour 2 -->
+      <article class="tour-card reveal d1" data-tour="terraces-twin-peaks">
+        <div class="tour-photo">
+          <img src="images/tour-volcano.jpg" alt="Bali's central highlands rising toward the volcanic peaks" loading="lazy" decoding="async" />
+          <button class="expand" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-8 8M3 21l8-8"/></svg>Enlarge
+          </button>
+        </div>
+        <div class="tour-body">
+          <span class="tour-tag">Majestic Volcano Tour</span>
+          <h3>Terraces &amp; Twin Peaks</h3>
+          <div class="tour-dur">40 minutes</div>
+          <p class="tour-desc">Lift off toward the mountains that crown the island. The flight opens over the terraced greens of Tegalalang before the land begins to rise &mdash; first to Mount Agung, Bali's tallest and most revered peak, then across to the sweeping caldera of Mount Batur, where a still lake rests inside an ancient crater.</p>
+          <ul class="route">
+            <li>Kuber</li><li>Tegalalang Rice Terrace</li><li>Mount Agung</li><li>Mount Batur</li><li>Kuber</li>
+          </ul>
+          <div class="tour-map"><img src="images/map-volcano.png" alt="Route map: Kuber to Tegalalang, Mount Agung and Mount Batur, returning to Kuber" loading="lazy" decoding="async" /></div>
+          <div class="price">
+            <span class="label">Special price</span>
+            <strong>IDR 45,699,000</strong>
+            <span class="per">per tour &middot; private, per helicopter, up to 4 seats</span>
+          </div>
+          <a class="cta" href="https://wa.me/6281130075555?text=Hi%21%20I%27m%20guests%20at%20Kuber%20Adventure%20and%20I%27d%20like%20to%20book%20the%2040-minute%20Terraces%20%26%20Twin%20Peaks%20volcano%20tour%20%28IDR%2045%2C699%2C000%29.%20Could%20you%20let%20me%20know%20what%27s%20available%3F%20please%20keep%20this%20line%20so%20the%20Kuber%20guest%20rate%20is%20applied" target="_blank" rel="noopener">Enquire about this tour<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- Tour 3 -->
+      <article class="tour-card reveal" data-tour="island-circuit">
+        <div class="tour-photo">
+          <img src="images/tour-uluwatu.jpg" alt="The sea temple of Tanah Lot on its rock shelf, seen from the air" loading="lazy" decoding="async" />
+          <button class="expand" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-8 8M3 21l8-8"/></svg>Enlarge
+          </button>
+        </div>
+        <div class="tour-body">
+          <span class="tour-tag">Signature Uluwatu Tour</span>
+          <h3>The Complete Island Circuit</h3>
+          <div class="tour-dur">50 minutes</div>
+          <p class="tour-desc">A sweeping circuit that gathers the whole island into one flight. Out over Nuanu and the sea temple of Tanah Lot, then down the coast past Berawa, Seminyak and Kuta to the seafood bay of Jimbaran. Dreamland gives way to the sacred heights of Uluwatu Temple, the secluded shore of Nyang Nyang, the arc of Pandawa and the chalk cliffs of Melasti, all watched over by the GWK. Banking inland across Serangan and Sanur, the flight crowns itself above Ubud before carrying you home.</p>
+          <ul class="route">
+            <li>Kuber</li><li>Nuanu</li><li>Tanah Lot</li><li>Berawa</li><li>Seminyak</li><li>Kuta Beach</li><li>Jimbaran</li><li>Dreamland Beach</li><li>Uluwatu Temple</li><li>Nyang Nyang Beach</li><li>Pandawa Beach</li><li>Melasti</li><li>GWK</li><li>Serangan</li><li>Sanur</li><li>Ubud</li><li>Kuber</li>
+          </ul>
+          <div class="tour-map"><img src="images/map-uluwatu.png" alt="Route map: Kuber down the west coast to Uluwatu and the Bukit, back via Sanur and Ubud" loading="lazy" decoding="async" /></div>
+          <div class="price">
+            <span class="label">Special price</span>
+            <strong>IDR 54,399,000</strong>
+            <span class="per">per tour &middot; private, per helicopter, up to 4 seats</span>
+          </div>
+          <a class="cta" href="https://wa.me/6281130075555?text=Hi%21%20I%27m%20guests%20at%20Kuber%20Adventure%20and%20I%27d%20like%20to%20book%20the%2050-minute%20Complete%20Island%20Circuit%20Uluwatu%20tour%20%28IDR%2054%2C399%2C000%29.%20Could%20you%20let%20me%20know%20what%27s%20available%3F%20please%20keep%20this%20line%20so%20the%20Kuber%20guest%20rate%20is%20applied" target="_blank" rel="noopener">Enquire about this tour<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- Tour 4 -->
+      <article class="tour-card reveal d1" data-tour="wild-isles">
+        <div class="tour-photo">
+          <img src="images/tour-penida.jpg" alt="The cliffs and turquoise shallows of Nusa Penida from directly above" loading="lazy" decoding="async" />
+          <button class="expand" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-8 8M3 21l8-8"/></svg>Enlarge
+          </button>
+        </div>
+        <div class="tour-body">
+          <span class="tour-tag">Signature Penida Tour</span>
+          <h3>The Wild Isles</h3>
+          <div class="tour-dur">55 minutes</div>
+          <p class="tour-desc">Across the channel to Bali's rugged offshore realm. Skim the eastern shoreline by way of Padang Bai, Sampalan and Semaya, then Diamond Beach and its cove framed by pale cliffs. From there Nusa Penida reveals itself in full &mdash; the shallows where manta rays drift, the dinosaur-ridge of Kelingking, the stone window at Broken Beach, the jade strait to Ceningan and the blowholes of Devil's Tears.</p>
+          <ul class="route">
+            <li>Kuber</li><li>Padang Bai</li><li>Sampalan</li><li>Semaya</li><li>Diamond Beach</li><li>Manta Point</li><li>Kelingking</li><li>Broken Beach</li><li>Nusa Ceningan</li><li>Devil's Tears</li><li>Kuber</li>
+          </ul>
+          <div class="tour-map"><img src="images/map-penida.png" alt="Route map: Kuber across to Nusa Penida and Nusa Ceningan and back" loading="lazy" decoding="async" /></div>
+          <div class="price">
+            <span class="label">Special price</span>
+            <strong>IDR 56,599,000</strong>
+            <span class="per">per tour &middot; private, per helicopter, up to 4 seats</span>
+          </div>
+          <a class="cta" href="https://wa.me/6281130075555?text=Hi%21%20I%27m%20guests%20at%20Kuber%20Adventure%20and%20I%27d%20like%20to%20book%20the%2055-minute%20Wild%20Isles%20Nusa%20Penida%20tour%20%28IDR%2056%2C599%2C000%29.%20Could%20you%20let%20me%20know%20what%27s%20available%3F%20please%20keep%20this%20line%20so%20the%20Kuber%20guest%20rate%20is%20applied" target="_blank" rel="noopener">Enquire about this tour<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+    <p class="note">Tour durations are on-board flight time and may vary with weather and air traffic.</p>
+  </div>
+</section>
+
+<!-- ===== TRANSFERS ===== -->
+<section class="section section--soft" id="transfers">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow">Helicopter Transfers</span>
+      <h2 class="title">Arrive by Air</h2>
+      <p class="lead">Skip the traffic entirely. Private helicopter transfers from the Kuber helipad &mdash; to the airport, across the island, or out to the islands beyond.</p>
+    </div>
+
+    <div class="feat-grid reveal">
+      <div class="feat">
+        <div class="feat-photo"><img src="images/transfer-airport.jpg" alt="Ngurah Rai International Airport terminal, Bali" loading="lazy" decoding="async" /></div>
+        <div class="feat-body">
+        <span class="tour-tag">VIP Airport Transfer</span>
+        <h3>Transfer via Airport</h3>
+        <p>Direct to Ngurah Rai International &middot; 15 minutes on board</p>
+        <div class="price">
+          <span class="label">Special price</span>
+          <strong>IDR 65,899,000</strong>
+          <span class="per">per helicopter, up to 4 guests, one way</span>
+        </div>
+        <a class="cta" href="https://wa.me/6281130075555?text=Hi%21%20I%27m%20guests%20at%20Kuber%20Adventure%20and%20I%27d%20like%20to%20book%20the%20VIP%20Airport%20Transfer%20direct%20to%20Ngurah%20Rai%20International%20%28IDR%2065%2C899%2C000%29.%20Could%20you%20let%20me%20know%20what%27s%20available%3F%20please%20keep%20this%20line%20so%20the%20Kuber%20guest%20rate%20is%20applied" target="_blank" rel="noopener">Book a Flight<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-photo"><img src="images/benoa-helipad.jpg" alt="The Benoa helipad — green and yellow markings with the lagoon behind" loading="lazy" decoding="async" /></div>
+        <div class="feat-body">
+        <span class="tour-tag">VIP Airport Transfer</span>
+        <h3>Transfer via Benoa</h3>
+        <p>Via Benoa helipad &middot; car transfer included &middot; 15 minutes on board</p>
+        <div class="price">
+          <span class="label">Special price</span>
+          <strong>IDR 38,899,000</strong>
+          <span class="per">per helicopter, up to 4 guests, one way</span>
+        </div>
+        <a class="cta" href="https://wa.me/6281130075555?text=Hi%21%20I%27m%20guests%20at%20Kuber%20Adventure%20and%20I%27d%20like%20to%20book%20the%20VIP%20Airport%20Transfer%20via%20Benoa%2C%20car%20transfer%20included%20%28IDR%2038%2C899%2C000%29.%20Could%20you%20let%20me%20know%20what%27s%20available%3F%20please%20keep%20this%20line%20so%20the%20Kuber%20guest%20rate%20is%20applied" target="_blank" rel="noopener">Book a Flight<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="table-head reveal">Kuber Signature Transfers &mdash; from the Kuber Helipad</h3>
+    <div class="table-wrap reveal">
+      <table class="rates">
+        <thead>
+          <tr>
+            <th scope="col">Route</th>
+            <th scope="col">Flight time</th>
+            <th scope="col">Private transfer rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Kuber &rarr; Gili Trawangan</td><td>35 min</td><td>IDR 71,199,000</td></tr>
+          <tr><td>Kuber &rarr; Jatiluwih Ecofarm</td><td>10 min</td><td>IDR 32,899,000</td></tr>
+          <tr><td>Kuber &rarr; Semaya Penida</td><td>25 min</td><td>IDR 54,599,000</td></tr>
+          <tr><td>Kuber &rarr; Xpark Penida</td><td>20 min</td><td>IDR 47,299,000</td></tr>
+          <tr><td>Kuber &rarr; Nusa Lembongan</td><td>15 min</td><td>IDR 40,799,000</td></tr>
+          <tr><td>Kuber &rarr; Nuanu</td><td>10 min</td><td>IDR 22,999,000</td></tr>
+          <tr><td>Kuber &rarr; Benoa<small>car transfer from / to the airport included</small></td><td>15 min</td><td>IDR 38,899,000</td></tr>
+          <tr><td>Kuber &rarr; Nusa Dua</td><td>20 min</td><td>IDR 33,199,000</td></tr>
+          <tr><td>Kuber &rarr; Bubble Hotel</td><td>20 min</td><td>IDR 43,699,000</td></tr>
+          <tr><td>Kuber &rarr; Airport Ngurah Rai</td><td>15 min</td><td>IDR 65,899,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">All rates are per helicopter for up to 4 guests, one way. Flight times are on-board time and may vary with weather and air traffic.</p>
+    <div style="display:flex;justify-content:center;margin-top:30px" class="reveal">
+      <a class="cta" href="https://wa.me/6281130075555?text=Hi%21%20I%27m%20guests%20at%20Kuber%20Adventure%20and%20I%27d%20like%20to%20book%20a%20helicopter%20transfer%20to%20or%20from%20Kuber.%20Could%20you%20let%20me%20know%20what%27s%20available%3F%20please%20keep%20this%20line%20so%20the%20Kuber%20guest%20rate%20is%20applied" target="_blank" rel="noopener">Enquire about a transfer<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RIDE & FLY ===== -->
+<section class="section" id="ride">
+  <div class="container split">
+    <div class="split-copy reveal">
+      <span class="eyebrow">Ride &amp; Fly</span>
+      <h2 class="title">Fly In, Ride, Fly Out</h2>
+      <p>The helipad sits at the edge of the track. Land, change, ride &mdash; jungle trail, river crossings, the mud zone and the cave &mdash; then lift off again when you're done.</p>
+      <p>Ten minutes in from Nuanu, the aircraft waiting on the ground while you ride, and out the same way. The day starts with the ride instead of the road.</p>
+      <div class="attrib">The ride, the guides, the briefing and the safety equipment are operated by Kuber Bali Adventure, who set duration, inclusions and eligibility.</div>
+      <p>Tell us your riding slot and we'll build the flight around it. Combined rates are quoted case by case.</p>
+      <a class="cta" href="https://wa.me/6281130075555?text=Hi%21%20I%27m%20guests%20at%20Kuber%20Adventure%20and%20I%27d%20like%20to%20book%20a%20helicopter%20flight%20around%20a%20riding%20slot%20at%20Kuber.%20Could%20you%20let%20me%20know%20what%27s%20available%3F%20please%20keep%20this%20line%20so%20the%20Kuber%20guest%20rate%20is%20applied" target="_blank" rel="noopener">Enquire about flight and ride<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="split-photo reveal d1">
+      <img src="images/kuber-helipad.jpg" alt="Guests stepping down onto the Kuber helipad, luggage being unloaded and rice fields all around" loading="lazy" decoding="async" />
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLEET ===== -->
+<section class="section section--soft" id="fleet">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow">The Fleet</span>
+      <h2 class="title">Factory-Fresh, Without Exception</h2>
+      <p class="lead">Every aircraft delivered new and maintained to the highest international aviation standards. Every flight is private &mdash; one pilot, up to four guests, no shared seats.</p>
+    </div>
+
+    <!-- Robinson R66 -->
+    <div class="fleet-block reveal">
+      <div class="fleet-grid">
+        <div class="fleet-info">
+          <h3>Robinson R66</h3>
+          <div class="reg">PK-VPN (2022) &middot; PK-VPX (2023) &middot; PK-VPY (2025)</div>
+          <div class="spec"><span class="k"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>Cruise Speed</span><span class="v">Up to 110 kn (204 km/h)</span></div>
+          <div class="spec"><span class="k"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="9"/></svg>Max Range</span><span class="v">&asymp; 350 nm (650 km)</span></div>
+          <div class="spec"><span class="k"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21a7 7 0 0 1 14 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 21a5 5 0 0 1 6 0"/></svg>Capacity</span><span class="v">1 pilot + up to 4 pax</span></div>
+          <div class="spec"><span class="k"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Baggage</span><span class="v">18 ft&sup3; &middot; 136 kg</span></div>
+          <p class="spec-note">*Subject to configuration and payload.</p>
+        </div>
+        <div class="fleet-gallery">
+          <img loading="lazy" decoding="async" src="images/r66-vpy.jpg" alt="Robinson R66 on the helipad" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Bell 505 -->
+    <div class="fleet-block rev reveal">
+      <div class="fleet-grid">
+        <div class="fleet-info">
+          <h3>Bell 505</h3>
+          <div class="reg">PK-DJG (2024)</div>
+          <div class="spec"><span class="k"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>Cruise Speed</span><span class="v">125 kn (231 km/h)</span></div>
+          <div class="spec"><span class="k"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="9"/></svg>Max Range</span><span class="v">306 nm (567 km)</span></div>
+          <div class="spec"><span class="k"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21a7 7 0 0 1 14 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 21a5 5 0 0 1 6 0"/></svg>Capacity</span><span class="v">1 pilot + up to 4 pax</span></div>
+          <div class="spec"><span class="k"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Baggage</span><span class="v">288 kg</span></div>
+          <p class="spec-note">*Subject to configuration and payload.</p>
+        </div>
+        <div class="fleet-gallery">
+          <img loading="lazy" decoding="async" src="images/bell-505.jpg" alt="Bell 505 side profile on the helipad" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-left">
+      <div class="wm">
+        <img src="images/kuber-logo.png" alt="Kuber Bali Adventure" />
+      </div>
+      <h2>Arrange Your Flight</h2>
+      <p class="sub">Guests of Kuber Bali Adventure can arrange private helicopter tours and transfers directly &mdash; reach out and we'll tailor the experience to your day.</p>
+
+      <div class="c-block">
+        <h4>Contact</h4>
+        <div class="c-rows">
+          <a class="c-item" target="_blank" rel="noopener" href="https://wa.me/6281130075555?text=Hi%21%20I%27m%20guests%20at%20Kuber%20Adventure%20and%20I%27d%20like%20to%20book%20a%20helicopter%20flight.%20Could%20you%20let%20me%20know%20what%27s%20available%3F%20please%20keep%20this%20line%20so%20the%20Kuber%20guest%20rate%20is%20applied"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.2-5.6A8.4 8.4 0 1 1 21 11.5Z"/></svg></span>+62 81 1300 75 555</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLOATING WHATSAPP ===== -->
+<a class="wa-float" href="https://wa.me/6281130075555?text=Hi%21%20I%27m%20guests%20at%20Kuber%20Adventure%20and%20I%27d%20like%20to%20book%20a%20helicopter%20flight.%20Could%20you%20let%20me%20know%20what%27s%20available%3F%20please%20keep%20this%20line%20so%20the%20Kuber%20guest%20rate%20is%20applied" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <span class="wa-label">Chat with us</span>
+  <span class="wa-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.892c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 005.71 1.447h.006c6.585 0 11.946-5.335 11.949-11.896C24 8.552 22.759 5.652 20.52 3.45"/></svg></span>
+</a>
+
+<!-- ===== TOUR DETAIL OVERLAY (content is cloned from the cards at open time) ===== -->
+<div class="tm" id="tm" role="dialog" aria-modal="true" aria-labelledby="tmTitle" hidden>
+  <div class="tm-dialog" role="document">
+    <button class="tm-close" id="tmClose" type="button" aria-label="Close tour details">&times;</button>
+    <div class="tm-hero">
+      <img id="tmHero" alt="" />
+      <div class="tm-heroText">
+        <span class="tour-tag" id="tmTag"></span>
+        <h3 id="tmTitle"></h3>
+        <div class="tour-dur" id="tmDur"></div>
+      </div>
+    </div>
+    <div class="tm-body">
+      <div>
+        <p class="tm-desc" id="tmDesc"></p>
+        <h4>The Route</h4>
+        <ul class="route" id="tmRoute"></ul>
+      </div>
+      <div>
+        <h4>Route Map</h4>
+        <div class="tm-map" id="tmMapWrap"><img id="tmMap" alt="" /></div>
+        <div class="price" id="tmPrice"></div>
+        <a class="cta" id="tmCta" href="#" target="_blank" rel="noopener">Enquire about this tour<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+    <div class="tm-foot">
+      <span class="tm-count" id="tmCount"></span>
+      <div class="tm-arrows">
+        <button class="tm-arrow" id="tmPrev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Previous</button>
+        <button class="tm-arrow" id="tmNext" type="button">Next<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lb" id="lb"><span class="close" id="lbClose">&times;</span><img id="lbImg" alt="Enlarged view" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /></div>
+
+<script>
+/* ---------- Hero video ----------
+   The first ~3s of the footage is a close-up of the rotor mast against sky, so the
+   loop is started past it. The still underneath stays visible until the video can
+   actually play, and stays put permanently if it can't. */
+(() => {
+  const v = document.getElementById('heroVideo');
+  if (!v) return;
+  const START = 4;
+  const show = () => v.classList.add('ready');
+  const play = () => { const p = v.play(); if (p) p.catch(() => {}); };  // blocked autoplay -> still remains
+  const toStart = () => { try { if (v.duration > START + 1) v.currentTime = START; } catch (e) {} };
+
+  v.addEventListener('loadedmetadata', toStart, {once:true});
+  v.addEventListener('canplay', () => { show(); play(); }, {once:true});
+  // Loop by hand. `loop` would restart at 0 and replay the mast; waiting for `ended`
+  // lets the element sit at end-of-stream. Jump back just BEFORE the last frame, so
+  // the window is always [4s, end) and playback never stops.
+  v.addEventListener('timeupdate', () => {
+    if (v.duration && v.currentTime >= v.duration - 0.15) { toStart(); play(); }
+  });
+  v.addEventListener('ended', () => { toStart(); play(); });   // safety net on slow devices
+  v.addEventListener('error', () => v.remove());               // the still underneath is already the fallback
+  if (v.readyState >= 3) { toStart(); show(); play(); }
+})();
+
+// Nav scroll state
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+// Mobile menu
+const burger = document.getElementById('burger');
+const navlinks = document.getElementById('navlinks');
+burger.addEventListener('click', () => navlinks.classList.toggle('mobile-open'));
+navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('mobile-open')));
+
+// Reveal on scroll — enhancement only; content is visible by default without JS
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.08, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+  // Safety net: never leave content hidden if IO fails to fire.
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in'));
+  }, 3000);
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+}
+
+// Active nav link
+const navMap = {};
+document.querySelectorAll('nav.links a').forEach(a => navMap[a.getAttribute('href').slice(1)] = a);
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      document.querySelectorAll('nav.links a').forEach(a => a.classList.remove('active'));
+      const el = navMap[e.target.id];
+      if (el) el.classList.add('active');
+    }
+  });
+}, {threshold:0.4});
+document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
+
+/* ---------- Shared scroll lock ----------
+   The map lightbox can open on top of the tour overlay, so a naive
+   `body.style.overflow=''` on close would unlock the page while the overlay
+   is still up. Count the layers instead. */
+let locks = 0;
+const lock   = () => { if (locks++ === 0) document.body.style.overflow = 'hidden'; };
+const unlock = () => { if (--locks <= 0) { locks = 0; document.body.style.overflow = ''; } };
+
+// ---------- Lightbox: fleet photos and route maps ----------
+const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg');
+const openLb = (src, alt) => { lbImg.src = src; lbImg.alt = alt || 'Enlarged view'; lb.classList.add('open'); lock(); };
+const closeLb = () => { if (!lb.classList.contains('open')) return; lb.classList.remove('open'); unlock(); };
+document.querySelectorAll('.fleet-gallery img, .tour-map img').forEach(i =>
+  i.addEventListener('click', () => openLb(i.src, i.alt)));
+lbImg.addEventListener('click', e => e.stopPropagation());
+lb.addEventListener('click', closeLb);
+document.getElementById('lbClose').addEventListener('click', closeLb);
+
+/* ---------- Tour detail overlay ----------
+   Content is read out of the cards themselves, so the cards stay the single
+   source of truth — editing a rate or a route in the markup updates both. */
+const tours = [...document.querySelectorAll('.tour-card')];
+const tm = document.getElementById('tm');
+const tmEl = id => document.getElementById(id);
+let tmIndex = -1, lastFocus = null;
+
+const readTour = card => ({
+  slug:  card.dataset.tour,
+  photo: card.querySelector('.tour-photo img'),
+  tag:   card.querySelector('.tour-tag').textContent,
+  title: card.querySelector('h3').textContent,
+  dur:   card.querySelector('.tour-dur').textContent,
+  desc:  card.querySelector('.tour-desc').innerHTML,
+  route: card.querySelector('.route').innerHTML,
+  map:   card.querySelector('.tour-map img'),
+  price: card.querySelector('.price').innerHTML,
+  cta:   card.querySelector('.cta').href
+});
+
+function renderTour(i) {
+  const t = readTour(tours[i]);
+  tmIndex = i;
+  tmEl('tmHero').src = t.photo.currentSrc || t.photo.src;
+  tmEl('tmHero').alt = t.photo.alt;
+  tmEl('tmTag').textContent = t.tag;
+  tmEl('tmTitle').textContent = t.title;
+  tmEl('tmDur').textContent = t.dur;
+  tmEl('tmDesc').innerHTML = t.desc;
+  tmEl('tmRoute').innerHTML = t.route;
+  tmEl('tmMap').src = t.map.getAttribute('src');
+  tmEl('tmMap').alt = t.map.alt;
+  tmEl('tmPrice').innerHTML = t.price;
+  tmEl('tmCta').href = t.cta;
+  tmEl('tmCount').textContent = `Tour ${i + 1} of ${tours.length}`;
+  // Shareable: the open tour lives in the URL, so a guest can send the link.
+  history.replaceState(null, '', '#' + t.slug);
+}
+
+function openTour(i, focusOrigin) {
+  lastFocus = focusOrigin || document.activeElement;
+  renderTour(i);
+  tm.hidden = false;
+  tm.classList.add('open');
+  tm.scrollTop = 0;
+  lock();
+  tmEl('tmClose').focus();
+}
+
+function closeTour() {
+  if (!tm.classList.contains('open')) return;
+  tm.classList.remove('open');
+  tm.hidden = true;
+  unlock();
+  history.replaceState(null, '', location.pathname + location.search);
+  if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
+}
+
+const stepTour = d => renderTour((tmIndex + d + tours.length) % tours.length);
+
+tours.forEach((card, i) => {
+  const photo = card.querySelector('.tour-photo');
+  const btn = card.querySelector('.expand');
+  btn.setAttribute('aria-label', 'Enlarge ' + card.querySelector('h3').textContent);
+  photo.addEventListener('click', () => openTour(i, btn));
+});
+
+tmEl('tmClose').addEventListener('click', closeTour);
+tmEl('tmPrev').addEventListener('click', () => stepTour(-1));
+tmEl('tmNext').addEventListener('click', () => stepTour(1));
+tm.addEventListener('click', e => { if (e.target === tm) closeTour(); });
+tmEl('tmMapWrap').addEventListener('click', () => openLb(tmEl('tmMap').src, tmEl('tmMap').alt));
+
+// Keep tabbing inside the overlay while it is open
+tm.addEventListener('keydown', e => {
+  if (e.key !== 'Tab') return;
+  const f = [...tm.querySelectorAll('button, a[href]')].filter(el => el.offsetParent !== null);
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+
+// One key handler for both layers — Escape closes the topmost, arrows page the tours
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { lb.classList.contains('open') ? closeLb() : closeTour(); return; }
+  if (!tm.classList.contains('open') || lb.classList.contains('open')) return;
+  if (e.key === 'ArrowLeft')  stepTour(-1);
+  if (e.key === 'ArrowRight') stepTour(1);
+});
+
+// Deep link: /#wild-isles opens that tour on load
+(() => {
+  const slug = location.hash.slice(1);
+  if (!slug) return;
+  const i = tours.findIndex(c => c.dataset.tour === slug);
+  if (i > -1) openTour(i);
+})();
+</script>
+</body>
+</html>
